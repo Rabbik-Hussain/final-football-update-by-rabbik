@@ -821,3 +821,384 @@ html{
         font-size: 13px;
     }
 }
+
+/* =========================================================
+   MATCHCRAFT HELP — SAFE HOVER EFFECTS
+   Desktop hover + mobile overflow protection
+========================================================= */
+
+/* Prevent content from stretching outside the Help page */
+#help,
+#help *,
+#help *::before,
+#help *::after {
+    box-sizing: border-box;
+}
+
+#help {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+#help .help-container,
+#help .help-hero,
+#help .help-hero-copy,
+#help .help-intro-panel,
+#help .help-section-heading,
+#help .help-accordion,
+#help .help-card,
+#help .help-card-trigger,
+#help .help-card-heading,
+#help .help-card-panel,
+#help .help-card-inner,
+#help .help-detail,
+#help .help-bottom-note {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* Keep long text inside its own area */
+#help h1,
+#help h2,
+#help h3,
+#help h4,
+#help p,
+#help small,
+#help strong,
+#help span {
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+/* Smooth heading transitions */
+#help .help-hero-copy h1,
+#help .help-intro-panel h2,
+#help .help-section-heading h2,
+#help .help-bottom-note h3 {
+    transition:
+        color 0.22s ease,
+        text-shadow 0.22s ease;
+}
+
+/* Heading hover only on devices that support real hover */
+@media (hover: hover) and (pointer: fine) {
+    #help .help-hero-copy h1:hover,
+    #help .help-intro-panel h2:hover,
+    #help .help-section-heading h2:hover,
+    #help .help-bottom-note h3:hover {
+        color: var(--help-accent, #8b9dff);
+        text-shadow: 0 0 16px rgba(139, 157, 255, 0.18);
+    }
+}
+
+/* Help card: smooth, contained hover animation */
+#help .help-card {
+    position: relative;
+    transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+}
+
+#help .help-card-trigger {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    text-align: left;
+}
+
+#help .help-card-heading {
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+#help .help-card-title,
+#help .help-card-subtitle {
+    display: block;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+}
+
+/* Avoid text clipping inside expandable content */
+#help .help-card-panel,
+#help .help-card-inner,
+#help .help-detail-grid,
+#help .help-detail {
+    width: 100%;
+    min-width: 0;
+}
+
+#help .help-card-panel {
+    overflow: hidden;
+}
+
+#help .help-card-description-text,
+#help .help-detail-title,
+#help .help-detail-text {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* Desktop / laptop hover */
+@media (hover: hover) and (pointer: fine) {
+    #help .help-card:hover {
+        border-color: var(--help-accent, #8b9dff);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    #help .help-card-trigger:hover .help-card-title {
+        color: var(--help-accent, #8b9dff);
+    }
+
+    #help .help-card-trigger:hover .help-card-icon {
+        transform: translateY(-2px);
+    }
+
+    #help .help-card-icon {
+        transition:
+            transform 0.22s ease,
+            color 0.22s ease;
+    }
+
+    #help .help-detail:hover .help-detail-title {
+        color: var(--help-accent, #8b9dff);
+    }
+}
+
+/* Keyboard accessibility */
+#help .help-card-trigger:focus-visible,
+#help .help-language-toggle:focus-visible {
+    outline: 2px solid var(--help-accent, #8b9dff);
+    outline-offset: 3px;
+}
+
+/* Small screens: 400px and below */
+@media (max-width: 400px) {
+    #help {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    #help .help-container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #help .help-hero,
+    #help .help-intro-panel,
+    #help .help-bottom-note {
+        gap: 10px;
+    }
+
+    #help .help-hero-copy {
+        flex: 1 1 0%;
+        width: 100%;
+        min-width: 0;
+    }
+
+    #help .help-hero-copy h1 {
+        font-size: clamp(20px, 6vw, 27px);
+        line-height: 1.3;
+    }
+
+    #help .help-hero-copy p,
+    #help .help-intro-panel p,
+    #help .help-bottom-note p {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    #help .help-section-heading {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #help .help-section-heading > div {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    #help .help-section-heading h2 {
+        font-size: 19px;
+        line-height: 1.4;
+    }
+
+    #help .help-count {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    #help .help-language-toggle {
+        flex: 0 0 auto;
+        max-width: 100%;
+    }
+
+    #help .help-card-trigger {
+        gap: 8px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #help .help-card-number {
+        flex: 0 0 auto;
+    }
+
+    #help .help-card-icon {
+        flex: 0 0 auto;
+    }
+
+    #help .help-card-heading {
+        flex: 1 1 0%;
+        width: 0;
+        min-width: 0;
+    }
+
+    #help .help-card-title {
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    #help .help-card-subtitle {
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    #help .help-card-chevron {
+        flex: 0 0 auto;
+    }
+
+    #help .help-card-inner {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    #help .help-detail-title {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    #help .help-detail-text {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    #help *,
+    #help *::before,
+    #help *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =====================================================
+   MATCHCRAFT HELP — HOVER ONLY
+   Default design stays unchanged
+===================================================== */
+
+/* Keep the original appearance by default */
+#help .help-card,
+#help .help-card-title,
+#help .help-card-subtitle,
+#help .help-card-description-text,
+#help .help-detail-title,
+#help .help-detail-text,
+#help .help-hero-copy h1,
+#help .help-intro-panel h2,
+#help .help-section-heading h2,
+#help .help-bottom-note h3 {
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Golden headings and light-blue background ONLY on hover */
+@media (hover: hover) and (pointer: fine) {
+
+    #help .help-card:hover {
+        background-color: rgba(77, 145, 255, 0.13);
+        border-color: rgba(100, 165, 255, 0.55);
+        box-shadow: 0 8px 24px rgba(24, 93, 190, 0.14);
+    }
+
+    #help .help-card:hover .help-card-title,
+    #help .help-card:hover .help-detail-title,
+    #help .help-hero-copy h1:hover,
+    #help .help-intro-panel h2:hover,
+    #help .help-section-heading h2:hover,
+    #help .help-bottom-note h3:hover {
+        color: #d9ad50;
+    }
+
+    /* Bold white text ONLY while hovering the card */
+    #help .help-card:hover .help-card-subtitle,
+    #help .help-card:hover .help-card-description-text,
+    #help .help-card:hover .help-detail-text {
+        color: #f4f6fc;
+        font-weight: 650;
+    }
+
+    /* Light-blue background for an individual detail block */
+    #help .help-detail:hover {
+        background-color: rgba(77, 145, 255, 0.10);
+        border-radius: 10px;
+    }
+
+    /* Language button hover */
+    #help .help-language-toggle:hover {
+        background-color: rgba(77, 145, 255, 0.13);
+        border-color: rgba(100, 165, 255, 0.55);
+        color: #d9ad50;
+    }
+}
+
+/* Touchscreen: temporary feedback while pressing */
+@media (hover: none) {
+    #help .help-card:active {
+        background-color: rgba(77, 145, 255, 0.13);
+        border-color: rgba(100, 165, 255, 0.55);
+    }
+
+    #help .help-card:active .help-card-title {
+        color: #d9ad50;
+    }
+}
+
+/* Mobile overflow protection without changing default colors */
+@media (max-width: 480px) {
+    #help,
+    #help .help-container,
+    #help .help-card,
+    #help .help-card-trigger,
+    #help .help-card-heading,
+    #help .help-card-panel {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    #help .help-card-heading {
+        flex: 1 1 0%;
+    }
+
+    #help .help-card-title,
+    #help .help-card-subtitle,
+    #help .help-detail-title,
+    #help .help-detail-text {
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+}
